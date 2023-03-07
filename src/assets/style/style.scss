@@ -383,12 +383,14 @@ section {
     &:hover {
       rotate: 0 1 0 0deg;
       translate: calc(-150px * var(--index)) 60px 150px;
-      transition: rotate 1s var(--easeOutQuint),
+      transition: rotate 1.1s var(--easeOutQuint),
         translate 1.5s var(--easeOutQuint);
     }
 
     &:hover ~ img {
       translate: calc(-150px * var(--index) + 220px) 0 0;
+      transition: rotate 1s var(--easeOutQuint),
+        translate 1.1s var(--easeOutQuint);
     }
   }
 }
