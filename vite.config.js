@@ -20,7 +20,7 @@ export default defineConfig({
       },
     },
   },
-  base: "/",
+  base: "/230309_individual_transform/",
   server: {
     port: 3456,
   },
