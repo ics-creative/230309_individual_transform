@@ -21,6 +21,21 @@
         </div>
       </section>
       <section>
+        <h1>ポップアップ</h1>
+        <p class="popupWrapper" :class="popupAnimation ? 'active' : null">
+          <span class="popup" style="--index: 0">p</span>
+          <span class="popup" style="--index: 1">o</span>
+          <span class="popup" style="--index: 2">p</span>
+          <span class="popup" style="--index: 3">u</span>
+          <span class="popup" style="--index: 4">p</span>
+        </p>
+        <p>
+          <button @click="restartPopAnimation" class="restartButton">
+            再生
+          </button>
+        </p>
+      </section>
+      <section>
         <h1>ローディング</h1>
         <p class="nowLoading">
           <span class="text" style="--index: 0">N</span>
@@ -55,22 +70,7 @@
           </a>
         </div>
       </section>
-      <section>
-        <h1>ポップアップ</h1>
 
-        <p class="popupWrapper" :class="popupAnimation ? 'active' : null">
-          <span class="popup" style="--index: 0">p</span>
-          <span class="popup" style="--index: 1">o</span>
-          <span class="popup" style="--index: 2">p</span>
-          <span class="popup" style="--index: 3">u</span>
-          <span class="popup" style="--index: 4">p</span>
-        </p>
-        <p>
-          <button @click="restartPopAnimation" class="restartButton">
-            再生
-          </button>
-        </p>
-      </section>
 
       <section>
         <h1>飛んでくるリスト</h1>
