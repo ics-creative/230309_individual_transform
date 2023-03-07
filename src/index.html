@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=640, initial-scale=1.0" />
+    <title>独立したtransformプロパティ</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Mochiy+Pop+One&family=Noto+Color+Emoji&family=Noto+Sans+JP:wght@400;900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="assets/style/style.scss" />
+  </head>
+  <body>
+    <div class="wrapper" id="app">
+      <section>
+        <h1>はねる絵文字</h1>
+        <div class="puddingWrapper">
+          <p class="pudding">🍮️</p>
+        </div>
+      </section>
+      <section>
+        <h1>ローディング</h1>
+        <p class="nowLoading">
+          <span class="text" style="--index: 0">N</span>
+          <span class="text" style="--index: 1">O</span>
+          <span class="text" style="--index: 2">W</span>
+          <span class="text" style="--index: 3">L</span>
+          <span class="text" style="--index: 4">O</span>
+          <span class="text" style="--index: 5">A</span>
+          <span class="text" style="--index: 6">D</span>
+          <span class="text" style="--index: 7">I</span>
+          <span class="text" style="--index: 8">N</span>
+          <span class="text" style="--index: 9">G</span>
+        </p>
+      </section>
+
+      <section>
+        <h1>ホバーで大きくなるコンタクトボタン</h1>
+        <div class="contactWrapper">
+          <a href="#!" class="contactUs">
+            <img
+              src="/assets/images/contact_us_text.svg"
+              alt="contact us"
+              width="256"
+              class="contactUs_text"
+            />
+            <img
+              src="/assets/images/contact_us_icon.svg"
+              alt=""
+              width="256"
+              class="contactUs_icon"
+            />
+          </a>
+        </div>
+      </section>
+      <section>
+        <h1>ポップアップ</h1>
+
+        <p class="popupWrapper" :class="popupAnimation ? 'active' : null">
+          <span class="popup" style="--index: 0">p</span>
+          <span class="popup" style="--index: 1">o</span>
+          <span class="popup" style="--index: 2">p</span>
+          <span class="popup" style="--index: 3">u</span>
+          <span class="popup" style="--index: 4">p</span>
+        </p>
+        <p>
+          <button @click="restartPopAnimation" class="restartButton">
+            再生
+          </button>
+        </p>
+      </section>
+
+      <section>
+        <h1>飛んでくるリスト</h1>
+        <ul class="list" :class="listAnimation ? 'active' : null">
+          <li style="--index: 1">List1</li>
+          <li style="--index: 2">List2</li>
+          <li style="--index: 3">List3</li>
+          <li style="--index: 4">List4</li>
+        </ul>
+        <p>
+          <button @click="restartListAnimation" class="restartButton">
+            再生
+          </button>
+        </p>
+      </section>
+      <section>
+        <h1>マウスストーカー</h1>
+        <div class="mouseStalker">
+          <a href="#!" class="mouseStalker_link">Link</a>
+          <div class="mouseStalker_cursor"></div>
+        </div>
+      </section>
+      <section>
+        <h1>3Dの格納画像</h1>
+        <div>
+          <div class="catImages">
+            <img
+              src="/assets/images/cat1.jpg"
+              alt="猫"
+              width="240"
+              height="240"
+              style="--index: 1"
+            />
+            <img
+              src="/assets/images/cat2.jpg"
+              alt="猫"
+              width="240"
+              height="240"
+              style="--index: 2"
+            />
+            <img
+              src="/assets/images/cat3.jpg"
+              alt="猫"
+              width="240"
+              height="240"
+              style="--index: 3"
+            />
+            <img
+              src="/assets/images/cat4.jpg"
+              alt="猫"
+              width="240"
+              height="240"
+              style="--index: 4"
+            />
+            <img
+              src="/assets/images/cat5.jpg"
+              alt="猫"
+              width="240"
+              height="240"
+              style="--index: 5"
+            />
+          </div>
+        </div>
+      </section>
+    </div>
+    <script type="module">
+      import {
+        createApp,
+        ref,
+      } from "https://unpkg.com/vue@3.2.4/dist/vue.esm-browser.js";
+      // 再生ボタン
+      const app = createApp({
+        setup() {
+          const popupAnimation = ref(false);
+          const listAnimation = ref(false);
+          const restartPopAnimation = () => {
+            if (popupAnimation.value) {
+              return;
+            }
+            popupAnimation.value = true;
+            setTimeout(() => {
+              popupAnimation.value = false;
+            }, 1000);
+          };
+          const restartListAnimation = () => {
+            if (listAnimation.value) {
+              return;
+            }
+            listAnimation.value = true;
+            setTimeout(() => {
+              listAnimation.value = false;
+            }, 1500);
+          };
+
+          return {
+            popupAnimation,
+            restartPopAnimation,
+            listAnimation,
+            restartListAnimation,
+          };
+        },
+      });
+      app.mount("#app");
+
+      // マウスストーカー
+      const stalker = document.querySelector(".mouseStalker_cursor");
+      // マウス右下になるよう24pxのオフセット
+      const OFFSET = 24;
+
+      //  連続でイベントが呼ばれがちなので間引くためのフラグ
+      let flag = false;
+      document.addEventListener(
+        "mousemove",
+        (e) => {
+          e.stopPropagation();
+          if (flag) {
+            return;
+          }
+          flag = true;
+          // 位置をセット
+          stalker.style.translate = `${e.clientX + OFFSET}px ${
+            e.clientY + OFFSET
+          }px`;
+          //50ミリ秒間引く
+          setTimeout(() => {
+            flag = false;
+          }, 50);
+        },
+        false
+      );
+      const interactive = document.querySelectorAll("a,button");
+      interactive.forEach((element) => {
+        // インタラクティブなコンテンツにホバーしたときにアクティブクラスを付与する
+        element.addEventListener("mouseenter", () => {
+          stalker.classList.add("active");
+        });
+        element.addEventListener("mouseleave", () => {
+          stalker.classList.remove("active");
+        });
+      });
+    </script>
+  </body>
+</html>
