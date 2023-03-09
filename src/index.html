@@ -16,13 +16,13 @@
   <body>
     <div class="wrapper" id="app">
       <section>
-        <h1>はねる絵文字</h1>
+        <h1 id="pudding">はねる絵文字</h1>
         <div class="puddingWrapper">
           <p class="pudding">🍮️</p>
         </div>
       </section>
       <section>
-        <h1>ポップアップ</h1>
+        <h1 id="popup">ポップアップ</h1>
         <p class="popupWrapper" :class="popupAnimation ? 'active' : null">
           <span class="popup" style="--index: 0">p</span>
           <span class="popup" style="--index: 1">o</span>
@@ -37,7 +37,7 @@
         </p>
       </section>
       <section>
-        <h1>ローディング</h1>
+        <h1 id="loading">ローディング</h1>
         <p class="nowLoading">
           <span class="text" style="--index: 0">N</span>
           <span class="text" style="--index: 1">O</span>
@@ -53,7 +53,7 @@
       </section>
 
       <section>
-        <h1>ホバーで大きくなるコンタクトボタン</h1>
+        <h1 id="contact">ホバーで大きくなるコンタクトボタン</h1>
         <div class="contactWrapper">
           <a href="#!" class="contactUs">
             <img
@@ -75,7 +75,7 @@
       </section>
 
       <section>
-        <h1>飛んでくるリスト</h1>
+        <h1 id="list">飛んでくるリスト</h1>
         <ul class="list" :class="listAnimation ? 'active' : null">
           <li style="--index: 1">List1</li>
           <li style="--index: 2">List2</li>
@@ -89,14 +89,14 @@
         </p>
       </section>
       <section>
-        <h1>マウスストーカー</h1>
+        <h1 id="mouse_stalker">マウスストーカー</h1>
         <div class="mouseStalker">
           <a href="#!" class="mouseStalker_link">Link</a>
           <div class="mouseStalker_cursor"></div>
         </div>
       </section>
       <section>
-        <h1>3Dの格納画像</h1>
+        <h1 id="cats">3Dの格納画像</h1>
         <div>
           <div class="catImages">
             <img
