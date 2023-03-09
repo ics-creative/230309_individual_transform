@@ -11,6 +11,7 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="assets/style/style.scss" />
+    <script src="/mouseStalker.js" defer></script>
   </head>
   <body>
     <div class="wrapper" id="app">
@@ -59,18 +60,19 @@
               src="/assets/images/contact_us_text.svg"
               alt="contact us"
               width="256"
+              height="256"
               class="contactUs_text"
             />
             <img
               src="/assets/images/contact_us_icon.svg"
               alt=""
               width="256"
+              height="256"
               class="contactUs_icon"
             />
           </a>
         </div>
       </section>
-
 
       <section>
         <h1>飛んでくるリスト</h1>
@@ -140,7 +142,7 @@
       import {
         createApp,
         ref,
-      } from "https://unpkg.com/vue@3.2.4/dist/vue.esm-browser.js";
+      } from "https://unpkg.com/vue@3.2.47/dist/vue.esm-browser.js";
       // 再生ボタン
       const app = createApp({
         setup() {
@@ -174,43 +176,6 @@
         },
       });
       app.mount("#app");
-
-      // マウスストーカー
-      const stalker = document.querySelector(".mouseStalker_cursor");
-      // マウス右下になるよう24pxのオフセット
-      const OFFSET = 24;
-
-      //  連続でイベントが呼ばれがちなので間引くためのフラグ
-      let flag = false;
-      document.addEventListener(
-        "mousemove",
-        (e) => {
-          e.stopPropagation();
-          if (flag) {
-            return;
-          }
-          flag = true;
-          // 位置をセット
-          stalker.style.translate = `${e.clientX + OFFSET}px ${
-            e.clientY + OFFSET
-          }px`;
-          //50ミリ秒間引く
-          setTimeout(() => {
-            flag = false;
-          }, 50);
-        },
-        false
-      );
-      const interactive = document.querySelectorAll("a,button");
-      interactive.forEach((element) => {
-        // インタラクティブなコンテンツにホバーしたときにアクティブクラスを付与する
-        element.addEventListener("mouseenter", () => {
-          stalker.classList.add("active");
-        });
-        element.addEventListener("mouseleave", () => {
-          stalker.classList.remove("active");
-        });
-      });
     </script>
   </body>
 </html>

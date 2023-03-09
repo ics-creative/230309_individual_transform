@@ -4,7 +4,7 @@ export default defineConfig({
   root: "src",
   build: {
     outDir: "../docs",
-    assetsInlineLimit: 0,
+    minify: false,
     rollupOptions: {
       input: {
         main: "src/index.html",
