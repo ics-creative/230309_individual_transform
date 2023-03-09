@@ -41,6 +41,9 @@ section {
 .restartButton {
   padding: 8px 48px;
   cursor: pointer;
+  appearance: none;
+  border: 1px solid #333333;
+  background-color: #dbdbdb;
 }
 
 /* はねる絵文字 */
